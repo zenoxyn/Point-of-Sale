@@ -11,6 +11,7 @@ use App\Http\Controllers\ReportsController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\PurchaseRecordController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 // Home Routes
@@ -98,5 +99,11 @@ Route::middleware('auth')->group(function () {
     Route::post('/purchases', [PurchaseRecordController::class, 'store'])->name('purchases.store');
     Route::get('/products/{product}/purchases', [PurchaseRecordController::class, 'productPurchases'])->name('purchases.product');
     Route::get('/suppliers/{supplier}/purchases', [PurchaseRecordController::class, 'supplierPurchases'])->name('purchases.supplier');
+
+    // User Management Routes
+    Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
+    Route::post('/users', [UserController::class, 'store'])->name('users.store');
+    Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show');
+    Route::get('/users', [UserController::class, 'index'])->name('users.list');
 });
 
