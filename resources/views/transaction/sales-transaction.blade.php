@@ -60,7 +60,7 @@
               <a href="{{ route('sales.show', $sale->SaleID) }}">SR-{{ str_pad($sale->SaleID, 5, '0', STR_PAD_LEFT) }}</a>
             </td>
             <td class="px-6 py-4">{{ $sale->customer->CustomerCode ?? 'Walk-in Customer' }}</td>
-            <td class="px-6 py-4">₱{{ number_format($sale->TotalAmount, 2) }}</td>
+            <td class="px-6 py-4">Rp{{ number_format($sale->TotalAmount, 2) }}</td>
             <td class="px-6 py-4">{{ $sale->PaymentMethod }}</td>
             <td class="px-6 py-4 text-green-600 font-semibold">PAID</td>
             <td class="px-6 py-4">{{ $sale->clerk->name ?? 'System' }}</td>

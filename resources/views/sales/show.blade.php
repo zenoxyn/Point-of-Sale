@@ -39,12 +39,12 @@
                             $discount = $sale->DiscountAmount;
                             $total = $subtotal + $vat - $discount;
                         @endphp
-                        <p><span class="font-medium">Subtotal:</span> ₱{{ number_format($subtotal, 2) }}</p>
-                        <p><span class="font-medium">VAT (12%):</span> ₱{{ number_format($vat, 2) }}</p>
-                        <p><span class="font-medium">Discount:</span> ₱{{ number_format($discount, 2) }}</p>
-                        <p class="text-lg font-bold"><span class="font-medium">Total Amount:</span> ₱{{ number_format($total, 2) }}</p>
-                        <p><span class="font-medium">Amount Paid:</span> ₱{{ number_format($sale->AmountPaid, 2) }}</p>
-                        <p><span class="font-medium">Change:</span> ₱{{ number_format($sale->AmountPaid - $total, 2) }}</p>
+                        <p><span class="font-medium">Subtotal:</span> Rp{{ number_format($subtotal, 2) }}</p>
+                        <p><span class="font-medium">VAT (12%):</span> Rp{{ number_format($vat, 2) }}</p>
+                        <p><span class="font-medium">Discount:</span> Rp{{ number_format($discount, 2) }}</p>
+                        <p class="text-lg font-bold"><span class="font-medium">Total Amount:</span> Rp{{ number_format($total, 2) }}</p>
+                        <p><span class="font-medium">Amount Paid:</span> Rp{{ number_format($sale->AmountPaid, 2) }}</p>
+                        <p><span class="font-medium">Change:</span> Rp{{ number_format($sale->AmountPaid - $total, 2) }}</p>
                     </div>
                 </div>
             </div>
@@ -72,10 +72,10 @@
                                     {{ $item->Quantity }}
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
-                                    ₱{{ number_format($item->PriceAtSale, 2) }}
+                                    Rp{{ number_format($item->PriceAtSale, 2) }}
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
-                                    ₱{{ number_format($item->Quantity * $item->PriceAtSale, 2) }}
+                                    Rp{{ number_format($item->Quantity * $item->PriceAtSale, 2) }}
                                 </td>
                             </tr>
                             @endforeach
@@ -120,4 +120,4 @@
         }
     }
 </style>
-</x-header> 
+</x-header>

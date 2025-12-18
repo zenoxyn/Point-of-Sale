@@ -27,8 +27,8 @@
                 <div class="bg-white grid grid-cols-4 text-center divide-x divide-gray-200 p-4">
                     <!-- Today Sales -->
                     <div>
-                        <div class="text-2xl font-bold text-blue-500">₱{{ number_format($todaySales, 2) }}</div>
-                        <div class="text-gray-500 text-sm">Peso</div>
+                        <div class="text-2xl font-bold text-blue-500">Rp{{ number_format($todaySales, 2) }}</div>
+                        <div class="text-gray-500 text-sm">Rupiah</div>
                         <div class="mt-2 text-xs text-gray-600 flex items-center justify-center gap-1">
                             <span>⚙</span>
                             TODAY SALES
@@ -158,7 +158,7 @@
                             <tr>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ $item->ProductName }}</td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ (int)$item->total_quantity }}</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">₱{{ number_format($item->total_sales ?? 0, 2) }}</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Rp{{ number_format($item->total_sales ?? 0, 2) }}</td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ $item->CategoryName ?? 'N/A' }}</td>
                             </tr>
                             @empty
@@ -188,14 +188,14 @@
                     <hr class="w-full border-t border-gray-200" />
 
                     <div class="text-sm text-gray-600">Total Cost Value</div>
-                    <div class="text-xl text-blue-500 font-bold">₱{{ number_format($products->sum(function($product) {
+                    <div class="text-xl text-blue-500 font-bold">Rp{{ number_format($products->sum(function($product) {
                         return $product->CostPrice * ($product->inventory->QuantityOnHand ?? 0);
                     }), 2) }}</div>
 
                     <hr class="w-full border-t border-gray-200" />
 
                     <div class="text-sm text-gray-600">Average Cost Price</div>
-                    <div class="text-lg text-blue-500 font-semibold">₱{{ number_format($products->avg('CostPrice'), 2) }}</div>
+                    <div class="text-lg text-blue-500 font-semibold">Rp{{ number_format($products->avg('CostPrice'), 2) }}</div>
                 </div>
             </div>
         </div>
@@ -280,7 +280,7 @@
                             <div class="h-3 w-3 bg-cyan-400 rounded-full mr-2"></div>
                             <div>
                                 <p class="text-xs text-gray-500">DIRECT SALES</p>
-                                <p class="text-lg font-semibold text-gray-700">₱{{ number_format($monthlyTotal, 2) }}</p>
+                                <p class="text-lg font-semibold text-gray-700">Rp{{ number_format($monthlyTotal, 2) }}</p>
                             </div>
                         </div>
                     </div>
@@ -325,7 +325,7 @@
                             beginAtZero: true,
                             ticks: {
                                 callback: function(value) {
-                                    return '₱' + value;
+                                    return 'Rp' + value;
                                 }
                             }
                         }

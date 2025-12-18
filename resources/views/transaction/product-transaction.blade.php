@@ -1,6 +1,6 @@
 <x-header>
 <div class="flex p-6">
-    
+
     <!-- Sidebar -->
         <aside class="w-64 bg-white shadow h-screen p-6">
         <div class="mb-6 flex items-center justify-between">
@@ -14,7 +14,7 @@
 
         <ul class="space-y-4 max-h-[calc(100vh-200px)] overflow-y-auto" id="productList">
             @foreach($products as $item)
-            <li class="flex items-start justify-between hover:bg-gray-50 p-2 rounded-lg transition cursor-pointer product-item" 
+            <li class="flex items-start justify-between hover:bg-gray-50 p-2 rounded-lg transition cursor-pointer product-item"
                 data-product-name="{{ strtolower($item->ProductName) }}"
                 data-product-sku="{{ strtolower($item->SKU) }}"
                 onclick="window.location.href='{{ route('products.transactions', $item->ProductID) }}'">
@@ -27,7 +27,7 @@
                         </span>
                     </div>
                 </div>
-                <span class="text-sm font-semibold">₱{{ number_format($item->SellingPrice, 2) }}</span>
+                <span class="text-sm font-semibold">Rp{{ number_format($item->SellingPrice, 2) }}</span>
             </li>
             @endforeach
         </ul>
@@ -57,11 +57,11 @@
         <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
             <div class="bg-white p-4 rounded-lg shadow border">
                 <h3 class="text-sm font-medium text-gray-500">Total Sales</h3>
-                <p class="text-2xl font-semibold mt-1">₱{{ number_format($transactions->where('TransactionType', 'SALE')->sum('TotalAmount'), 2) }}</p>
+                <p class="text-2xl font-semibold mt-1">Rp{{ number_format($transactions->where('TransactionType', 'SALE')->sum('TotalAmount'), 2) }}</p>
             </div>
             <div class="bg-white p-4 rounded-lg shadow border">
                 <h3 class="text-sm font-medium text-gray-500">Total Returns</h3>
-                <p class="text-2xl font-semibold mt-1">₱{{ number_format($transactions->where('TransactionType', 'RETURN')->sum('TotalAmount'), 2) }}</p>
+                <p class="text-2xl font-semibold mt-1">Rp{{ number_format($transactions->where('TransactionType', 'RETURN')->sum('TotalAmount'), 2) }}</p>
             </div>
             <div class="bg-white p-4 rounded-lg shadow border">
                 <h3 class="text-sm font-medium text-gray-500">Units Sold</h3>
@@ -129,8 +129,8 @@
                             {{ abs($transaction->QuantityChange) }}
                         </span>
                     </td>
-                    <td class="px-4 py-2">₱{{ number_format($transaction->UnitPrice, 2) }}</td>
-                    <td class="px-4 py-2">₱{{ number_format($transaction->TotalAmount, 2) }}</td>
+                    <td class="px-4 py-2">Rp{{ number_format($transaction->UnitPrice, 2) }}</td>
+                    <td class="px-4 py-2">Rp{{ number_format($transaction->TotalAmount, 2) }}</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                         @if($transaction->TransactionType === 'SALE')
                             @if($transaction->sale)
@@ -193,7 +193,7 @@
                             <p>{{ $event->Description }}</p>
                             @if($event->QuantityChange)
                             <p class="mb-0">
-                                <strong>Quantity Change:</strong> 
+                                <strong>Quantity Change:</strong>
                                 <span class="{{ $event->QuantityChange > 0 ? 'text-success' : 'text-danger' }}">
                                     {{ $event->QuantityChange > 0 ? '+' : '' }}{{ $event->QuantityChange }}
                                 </span>
@@ -201,7 +201,7 @@
                             @endif
                             @if($event->OldValue !== null && $event->NewValue !== null)
                             <p class="mb-0">
-                                <strong>Price Change:</strong> 
+                                <strong>Price Change:</strong>
                                 {{ number_format($event->OldValue, 2) }} → {{ number_format($event->NewValue, 2) }}
                             </p>
                             @endif
@@ -321,7 +321,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const transactionsTab = document.getElementById('transactionsTab');
         const historyTab = document.getElementById('historyTab');
         const tabs = document.querySelectorAll('nav ul li');
-        
+
         if (tabName === 'transactions') {
             transactionsTab.classList.remove('hidden');
             historyTab.classList.add('hidden');
@@ -354,11 +354,11 @@ document.addEventListener('DOMContentLoaded', function() {
         const searchTerm = e.target.value.toLowerCase();
         const productItems = document.querySelectorAll('.product-item');
         let hasVisibleItems = false;
-        
+
         productItems.forEach(item => {
             const productName = item.dataset.productName;
             const sku = item.dataset.productSku;
-            
+
             if (productName.includes(searchTerm) || sku.includes(searchTerm)) {
                 item.style.display = '';
                 hasVisibleItems = true;
@@ -369,7 +369,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Show/hide "No results" message
         const noResultsMsg = document.getElementById('noResultsMsg');
-        
+
         if (!hasVisibleItems && searchTerm !== '') {
             if (!noResultsMsg) {
                 const msg = document.createElement('div');
@@ -387,18 +387,18 @@ document.addEventListener('DOMContentLoaded', function() {
     transactionSearch.addEventListener('input', function(e) {
         const searchTerm = e.target.value.toLowerCase();
         const transactionRows = document.querySelectorAll('#transactionsTab table tbody tr');
-        
+
         transactionRows.forEach(row => {
             const type = row.querySelector('td:nth-child(2)').textContent.toLowerCase();
             const quantity = row.querySelector('td:nth-child(3)').textContent.toLowerCase();
             const unitPrice = row.querySelector('td:nth-child(4)').textContent.toLowerCase();
             const total = row.querySelector('td:nth-child(5)').textContent.toLowerCase();
             const reference = row.querySelector('td:nth-child(6)').textContent.toLowerCase();
-            
-            if (type.includes(searchTerm) || 
-                quantity.includes(searchTerm) || 
-                unitPrice.includes(searchTerm) || 
-                total.includes(searchTerm) || 
+
+            if (type.includes(searchTerm) ||
+                quantity.includes(searchTerm) ||
+                unitPrice.includes(searchTerm) ||
+                total.includes(searchTerm) ||
                 reference.includes(searchTerm)) {
                 row.style.display = '';
             } else {
@@ -416,8 +416,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     <p><strong>Date:</strong> ${new Date(data.TransactionDate).toLocaleString()}</p>
                     <p><strong>Type:</strong> ${data.TransactionType}</p>
                     <p><strong>Quantity:</strong> ${data.QuantityChange}</p>
-                    <p><strong>Unit Price:</strong> ₱${data.UnitPrice.toFixed(2)}</p>
-                    <p><strong>Total Amount:</strong> ₱${data.TotalAmount.toFixed(2)}</p>
+                    <p><strong>Unit Price:</strong> Rp${data.UnitPrice.toFixed(2)}</p>
+                    <p><strong>Total Amount:</strong> Rp${data.TotalAmount.toFixed(2)}</p>
                     <p><strong>Reference:</strong> ${data.ReferenceID}</p>
                 `;
                 modal.classList.remove('hidden');

@@ -7,9 +7,9 @@
             <div class="mb-6 flex items-center space-x-4">
                 <div class="flex-1">
                     <div class="relative">
-                        <input type="text" 
+                        <input type="text"
                                id="searchInput"
-                               placeholder="Search products..." 
+                               placeholder="Search products..."
                                class="w-full pl-10 pr-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
                         <i class="fa-solid fa-search absolute left-3 top-3 text-gray-400"></i>
       </div>
@@ -25,15 +25,15 @@
             <!-- Product Grid -->
             <div id="productGrid" class="grid grid-cols-3 gap-4">
                 @foreach($products as $product)
-                <div class="product-card bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow p-4 cursor-pointer" 
+                <div class="product-card bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow p-4 cursor-pointer"
                      data-product-id="{{ $product->ProductID }}"
                      data-product-name="{{ strtolower($product->ProductName) }}"
                      data-category-id="{{ $product->CategoryID }}"
                      onclick="showQuantityModal({{ $product->ProductID }}, '{{ $product->ProductName }}', {{ $product->SellingPrice }}, {{ $product->inventory->QuantityOnHand ?? 0 }})">
                     <div class="aspect-square mb-3 bg-gray-100 rounded-lg overflow-hidden">
                         @if($product->Product_Image)
-                            <img src="{{ asset('storage/' . $product->Product_Image) }}" 
-                                 alt="{{ $product->ProductName }}" 
+                            <img src="{{ asset('storage/' . $product->Product_Image) }}"
+                                 alt="{{ $product->ProductName }}"
                                  class="w-full h-full object-contain">
                         @else
                             <div class="w-full h-full flex items-center justify-center">
@@ -44,7 +44,7 @@
                     <h3 class="font-medium text-gray-900 truncate">{{ $product->ProductName }}</h3>
                     <p class="text-sm text-gray-500 mb-2">SKU: {{ $product->SKU }}</p>
                     <div class="flex justify-between items-center">
-                        <span class="text-lg font-semibold text-blue-600">₱{{ number_format($product->SellingPrice, 2) }}</span>
+                        <span class="text-lg font-semibold text-blue-600">Rp{{ number_format($product->SellingPrice, 2) }}</span>
                         <span class="text-sm text-gray-500">Stock: {{ $product->inventory->QuantityOnHand ?? 0 }}</span>
     </div>
                 </div>
@@ -58,9 +58,9 @@
             <div class="p-6 border-b border-gray-200">
                 <h2 class="text-xl font-bold text-gray-900">Current Sale</h2>
                 <div class="mt-2 flex items-center space-x-2">
-                    <input type="text" 
+                    <input type="text"
                            id="customerName"
-                           placeholder="Customer Name" 
+                           placeholder="Customer Name"
                            class="flex-1 px-3 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
                     <button onclick="generateCustomerName()" class="px-3 py-2 text-blue-600 hover:bg-blue-50 rounded-lg" title="Generate Customer Name">
                         <i class="fa-solid fa-user-plus"></i>
@@ -80,31 +80,31 @@
                 <div class="space-y-3">
                     <div class="flex justify-between text-sm">
                         <span class="text-gray-600">Subtotal</span>
-                        <span class="font-medium" id="subtotal">₱0.00</span>
+                        <span class="font-medium" id="subtotal">Rp0.00</span>
       </div>
                     <div class="flex justify-between text-sm">
                         <span class="text-gray-600">VAT (12%)</span>
-                        <span class="font-medium" id="vat">₱0.00</span>
+                        <span class="font-medium" id="vat">Rp0.00</span>
         </div>
                     <div class="flex justify-between text-sm">
                         <span class="text-gray-600">Discount</span>
                         <div class="flex items-center space-x-2">
-                            <input type="number" 
+                            <input type="number"
                                    id="discountInput"
-                                   class="w-20 px-2 py-1 rounded border border-gray-300 text-right" 
-                                   value="0" 
-                                   min="0" 
+                                   class="w-20 px-2 py-1 rounded border border-gray-300 text-right"
+                                   value="0"
+                                   min="0"
                                    step="0.01">
                             <select id="discountType" class="px-2 py-1 rounded border border-gray-300">
                                 <option value="%">%</option>
-                                <option value="PHP">₱</option>
+                                <option value="PHP">Rp</option>
                             </select>
                         </div>
                     </div>
                     <div class="border-t border-gray-200 pt-3">
         <div class="flex justify-between items-center">
                             <span class="text-lg font-bold">Total</span>
-                            <span class="text-2xl font-bold text-blue-600" id="total">₱0.00</span>
+                            <span class="text-2xl font-bold text-blue-600" id="total">Rp0.00</span>
         </div>
         </div>
         </div>
@@ -153,10 +153,10 @@
                     <button onclick="decrementQuantity()" class="w-10 h-10 rounded-lg border border-gray-300 flex items-center justify-center hover:bg-gray-50">
                         <i class="fa-solid fa-minus"></i>
                     </button>
-                    <input type="number" 
-                           id="quantityInput" 
-                           class="w-20 text-center border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" 
-                           value="1" 
+                    <input type="number"
+                           id="quantityInput"
+                           class="w-20 text-center border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                           value="1"
                            min="1">
                     <button onclick="incrementQuantity()" class="w-10 h-10 rounded-lg border border-gray-300 flex items-center justify-center hover:bg-gray-50">
                         <i class="fa-solid fa-plus"></i>
@@ -190,14 +190,14 @@
                     <span>Total Amount:</span>
                     <span id="paymentTotal" class="font-semibold"></span>
                 </div>
-                
+
                 <div class="space-y-2">
                     <label class="block text-sm font-medium text-gray-700">Amount Received</label>
                     <div class="relative">
-                        <span class="absolute left-3 top-2 text-gray-500">₱</span>
-                        <input type="number" 
-                               id="amountReceived" 
-                               class="w-full pl-8 pr-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500" 
+                        <span class="absolute left-3 top-2 text-gray-500">Rp</span>
+                        <input type="number"
+                               id="amountReceived"
+                               class="w-full pl-8 pr-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                                placeholder="0.00"
                                step="0.01"
                                min="0">
@@ -206,7 +206,7 @@
 
                 <div class="flex justify-between text-sm text-gray-600">
                     <span>Change:</span>
-                    <span id="changeAmount" class="font-semibold">₱0.00</span>
+                    <span id="changeAmount" class="font-semibold">Rp0.00</span>
               </div>
             </div>
 
@@ -233,7 +233,7 @@
                 name: productName,
                 price: price
             };
-            
+
             // Calculate available stock by subtracting items in cart
             const itemsInCart = cart.filter(item => item.id === productId)
                                   .reduce((sum, item) => sum + item.quantity, 0);
@@ -241,11 +241,11 @@
             maxStock = stock - itemsInCart;
 
             document.getElementById('modalProductName').textContent = productName;
-            document.getElementById('modalProductPrice').textContent = `₱${price.toFixed(2)}`;
+            document.getElementById('modalProductPrice').textContent = `Rp${price.toFixed(2)}`;
             document.getElementById('modalProductStock').textContent = maxStock;
             document.getElementById('modalProductInCart').textContent = itemsInCart;
             document.getElementById('quantityInput').value = 1;
-            
+
             const modal = document.getElementById('quantityModal');
             modal.classList.remove('hidden');
             modal.classList.add('flex');
@@ -290,7 +290,7 @@
 
             // Update cart display
             updateCart();
-            
+
             // Close modal
             closeQuantityModal();
         }
@@ -319,11 +319,11 @@
                     <div class="flex-1">
                         <h4 class="font-medium text-gray-900">${item.name}</h4>
                         <div class="text-sm text-gray-500">
-                            ${item.totalQuantity} × ₱${item.price.toFixed(2)}
+                            ${item.totalQuantity} × Rp${item.price.toFixed(2)}
                         </div>
                     </div>
                     <div class="flex items-center space-x-4">
-                        <span class="font-medium text-gray-900">₱${(item.totalQuantity * item.price).toFixed(2)}</span>
+                        <span class="font-medium text-gray-900">Rp${(item.totalQuantity * item.price).toFixed(2)}</span>
                         <button onclick="removeFromCart(${item.id})" class="text-red-500 hover:text-red-600">
                             <i class="fa-solid fa-trash"></i>
                         </button>
@@ -349,9 +349,9 @@
             // Total is subtotal + VAT - discount
             const total = subtotal + vat - discount;
 
-            document.getElementById('subtotal').textContent = `₱${subtotal.toFixed(2)}`;
-            document.getElementById('vat').textContent = `₱${vat.toFixed(2)}`;
-            document.getElementById('total').textContent = `₱${total.toFixed(2)}`;
+            document.getElementById('subtotal').textContent = `Rp${subtotal.toFixed(2)}`;
+            document.getElementById('vat').textContent = `Rp${vat.toFixed(2)}`;
+            document.getElementById('total').textContent = `Rp${total.toFixed(2)}`;
         }
 
         function calculateDiscount() {
@@ -359,7 +359,7 @@
             const discountType = document.getElementById('discountType');
             const discountValue = parseFloat(discountInput.value) || 0;
             const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            
+
             if (discountType.value === '%') {
                 return (subtotal * discountValue / 100);
             }
@@ -405,7 +405,7 @@
                 productCards.forEach(card => {
                     const productName = card.dataset.productName;
                     const categoryId = card.dataset.categoryId;
-                    
+
                     const matchesSearch = productName.includes(searchTerm);
                     const matchesCategory = !selectedCategory || categoryId === selectedCategory;
 
@@ -453,10 +453,10 @@
             const total = subtotal + vat - discount;
 
             // Show cash payment modal
-            document.getElementById('paymentTotal').textContent = `₱${total.toFixed(2)}`;
+            document.getElementById('paymentTotal').textContent = `Rp${total.toFixed(2)}`;
             document.getElementById('amountReceived').value = '';
-            document.getElementById('changeAmount').textContent = '₱0.00';
-            
+            document.getElementById('changeAmount').textContent = 'Rp0.00';
+
             const modal = document.getElementById('cashPaymentModal');
             modal.classList.remove('hidden');
             modal.classList.add('flex');
@@ -472,11 +472,11 @@
 
         // Handle amount received input
         document.getElementById('amountReceived').addEventListener('input', function(e) {
-            const total = parseFloat(document.getElementById('paymentTotal').textContent.replace('₱', ''));
+            const total = parseFloat(document.getElementById('paymentTotal').textContent.replace('Rp', ''));
             const received = parseFloat(e.target.value) || 0;
             const change = received - total;
-            
-            document.getElementById('changeAmount').textContent = `₱${change >= 0 ? change.toFixed(2) : '0.00'}`;
+
+            document.getElementById('changeAmount').textContent = `Rp${change >= 0 ? change.toFixed(2) : '0.00'}`;
         });
 
         function updateStockDisplay(productId, newStock) {
@@ -503,9 +503,9 @@
         }
 
         function completeCashPayment() {
-            const total = parseFloat(document.getElementById('paymentTotal').textContent.replace('₱', ''));
+            const total = parseFloat(document.getElementById('paymentTotal').textContent.replace('Rp', ''));
             const received = parseFloat(document.getElementById('amountReceived').value) || 0;
-            
+
             if (received < total) {
                 alert('Amount received is less than the total amount');
                 return;
@@ -561,7 +561,7 @@
                         subtotal: cart.reduce((sum, item) => sum + (item.price * item.quantity), 0),
                         vat: cart.reduce((sum, item) => sum + (item.price * item.quantity), 0) * 0.12,
                         discount: calculateDiscount(),
-                        total: parseFloat(document.getElementById('paymentTotal').textContent.replace('₱', '')),
+                        total: parseFloat(document.getElementById('paymentTotal').textContent.replace('Rp', '')),
                         amountPaid: parseFloat(document.getElementById('amountReceived').value),
                         saleId: data.sale_id
                     };
@@ -570,17 +570,17 @@
                     const printButton = document.querySelector('button[onclick="printReceipt()"]');
                     printButton.disabled = false;
                     closeCashPaymentModal();
-                    
+
                     // Clear the cart
                     cart = [];
                     updateCart();
 
                     // Show success message
                     alert('Payment processed successfully!');
-                    
+
                     // Print receipt automatically
                     printReceipt();
-                    
+
                     // Refresh the page after a short delay to allow printing
                     setTimeout(() => {
                         window.location.reload();
@@ -609,7 +609,7 @@
             const { customerName, items, subtotal, vat, discount, total, amountPaid, saleId } = window.lastSaleData;
             const date = new Date().toLocaleString();
             const receiptNumber = `REC-${saleId}`;
-            
+
             // Create receipt content
             const receiptContent = `
                 <div style="font-family: Arial, sans-serif; max-width: 300px; margin: 0 auto; padding: 20px;">
@@ -627,28 +627,28 @@
                     <div style="margin-bottom: 10px;">
                         ${items.map(item => `
                             <div style="margin-bottom: 5px;">
-                                ${item.name} x ${item.quantity} = ₱${(item.price * item.quantity).toFixed(2)}
+                                ${item.name} x ${item.quantity} = Rp${(item.price * item.quantity).toFixed(2)}
                             </div>
                         `).join('')}
                     </div>
                     <hr style="margin: 15px 0;">
                     <div style="margin-bottom: 5px;">
-                        <strong>Subtotal:</strong> ₱${subtotal.toFixed(2)}
+                        <strong>Subtotal:</strong> Rp${subtotal.toFixed(2)}
                     </div>
                     <div style="margin-bottom: 5px;">
-                        <strong>VAT (12%):</strong> ₱${vat.toFixed(2)}
+                        <strong>VAT (12%):</strong> Rp${vat.toFixed(2)}
                     </div>
                     <div style="margin-bottom: 5px;">
-                        <strong>Discount:</strong> ₱${discount.toFixed(2)}
+                        <strong>Discount:</strong> Rp${discount.toFixed(2)}
                     </div>
                     <div style="margin-bottom: 5px;">
-                        <strong>Total:</strong> ₱${total.toFixed(2)}
+                        <strong>Total:</strong> Rp${total.toFixed(2)}
                     </div>
                     <div style="margin-bottom: 5px;">
-                        <strong>Amount Paid:</strong> ₱${amountPaid.toFixed(2)}
+                        <strong>Amount Paid:</strong> Rp${amountPaid.toFixed(2)}
                     </div>
                     <div style="margin-bottom: 5px;">
-                        <strong>Change:</strong> ₱${(amountPaid - total).toFixed(2)}
+                        <strong>Change:</strong> Rp${(amountPaid - total).toFixed(2)}
                     </div>
                     <hr style="margin: 15px 0;">
                     <div style="text-align: center; font-size: 12px; color: #666;">
@@ -656,7 +656,7 @@
                     </div>
                 </div>
             `;
-            
+
             // Create a hidden iframe for printing
             const iframe = document.createElement('iframe');
             iframe.style.display = 'none';

@@ -7,7 +7,7 @@
             <div class="grid grid-cols-1 gap-4 md:grid-cols-4">
                 <div class="p-4 bg-white rounded-lg shadow hover:shadow-lg transition-shadow duration-200">
                     <div class="text-sm text-gray-500">Today's Sales</div>
-                    <div class="text-2xl font-bold text-blue-600">₱{{ number_format($todaySales, 2) }}</div>
+                    <div class="text-2xl font-bold text-blue-600">Rp{{ number_format($todaySales, 2) }}</div>
                 </div>
                 <div class="p-4 bg-white rounded-lg shadow hover:shadow-lg transition-shadow duration-200">
                     <div class="text-sm text-gray-500">Items Sold Today</div>
@@ -71,7 +71,7 @@
                             <tr>
                                 <td class="px-6 py-4 whitespace-nowrap">{{ $item->ProductName }}</td>
                                 <td class="px-6 py-4 whitespace-nowrap">{{ $item->total_quantity }}</td>
-                                <td class="px-6 py-4 whitespace-nowrap">₱{{ number_format($item->total_sales ?? 0, 2) }}</td>
+                                <td class="px-6 py-4 whitespace-nowrap">Rp{{ number_format($item->total_sales ?? 0, 2) }}</td>
                                 <td class="px-6 py-4 whitespace-nowrap">{{ $item->CategoryName ?? 'N/A' }}</td>
                             </tr>
                             @endforeach
@@ -114,7 +114,7 @@
             <div class="p-4 bg-white rounded-lg shadow">
                 <div class="mb-4">
                     <div class="text-sm text-gray-500">Total Sales This Month</div>
-                    <div class="text-2xl font-bold text-blue-600">₱{{ number_format($monthlyTotal, 2) }}</div>
+                    <div class="text-2xl font-bold text-blue-600">Rp{{ number_format($monthlyTotal, 2) }}</div>
                 </div>
                 <div class="h-64">
                     <canvas id="monthlySalesChart"></canvas>
@@ -262,7 +262,7 @@
                             beginAtZero: true,
                             ticks: {
                                 callback: function(value) {
-                                    return '₱' + value;
+                                    return 'Rp' + value;
                                 }
                             }
                         }

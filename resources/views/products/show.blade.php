@@ -24,7 +24,7 @@
                                 <span class="text-gray-500">No image available</span>
                             </div>
                         @endif
-                        
+
                         <div class="space-y-4">
                             <div>
                                 <h3 class="text-sm font-medium text-gray-500">SKU</h3>
@@ -80,11 +80,11 @@
                         <div class="space-y-4">
                             <div>
                                 <h3 class="text-sm font-medium text-gray-500">Selling Price</h3>
-                                <p class="mt-1 text-lg font-semibold text-green-600">₱{{ number_format($product->SellingPrice, 2) }}</p>
+                                <p class="mt-1 text-lg font-semibold text-green-600">Rp{{ number_format($product->SellingPrice, 2) }}</p>
                             </div>
                             <div>
                                 <h3 class="text-sm font-medium text-gray-500">Cost Price</h3>
-                                <p class="mt-1">₱{{ number_format($product->CostPrice, 2) }}</p>
+                                <p class="mt-1">Rp{{ number_format($product->CostPrice, 2) }}</p>
                             </div>
                             <div>
                                 <h3 class="text-sm font-medium text-gray-500">Current Stock</h3>
@@ -136,4 +136,4 @@
             </div>
         </div>
     </div>
-</x-header> 
+</x-header>
