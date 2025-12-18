@@ -100,10 +100,14 @@ Route::middleware('auth')->group(function () {
     Route::get('/products/{product}/purchases', [PurchaseRecordController::class, 'productPurchases'])->name('purchases.product');
     Route::get('/suppliers/{supplier}/purchases', [PurchaseRecordController::class, 'supplierPurchases'])->name('purchases.supplier');
 
-    // User Management Routes
-    Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
-    Route::post('/users', [UserController::class, 'store'])->name('users.store');
-    Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show');
-    Route::get('/users', [UserController::class, 'index'])->name('users.list');
+    // User Management Routes (Admin Only)
+    Route::middleware('admin')->group(function () {
+        Route::get('/users', [UserController::class, 'index'])->name('users.index');
+        Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
+        Route::post('/users', [UserController::class, 'store'])->name('users.store');
+        Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
+        Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update');
+        Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
+    });
 });
 

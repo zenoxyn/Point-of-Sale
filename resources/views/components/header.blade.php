@@ -145,13 +145,15 @@
                Inventory Logs</span>
              </x-nav-link>
          </li>
+         @if(auth()->user()->role === 'admin')
          <li>
-            <x-nav-link href="{{ route('users.list') }}" :active="request()->is('users')" :menu_item="false" >
+            <x-nav-link href="{{ route('users.index') }}" :active="request()->is('users')" :menu_item="false" >
             <span class="flex-1 whitespace-nowrap">
             <i class="fa-solid fa-user text-gray-400 group-hover:text-white mr-4 transition-colors duration-200"></i>
             Users</span>
             </x-nav-link>
          </li>
+         @endif
          <li>
 
         </li>

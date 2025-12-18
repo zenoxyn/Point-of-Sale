@@ -39,10 +39,46 @@ class UserController extends Controller
         return redirect()->route('users.index')->with('success', 'User created successfully');
     }
     /**
-     * Display the specified user.
+     * Show the form for editing the specified user.
      */
-    public function show(User $user)
+    public function edit(User $user)
     {
-        return view('users.show', compact('user'));
+        return view('users.edit', compact('user'));
+    }
+
+    /**
+     * Update the specified user in storage.
+     */
+    public function update(Request $request, User $user)
+    {
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users,email,' . $user->id,
+            'password' => 'nullable|string|min:8|confirmed',
+            'role' => 'required|in:pegawai,supervisor,admin',
+        ]);
+
+        // Update data user
+        $user->name = $validated['name'];
+        $user->email = $validated['email'];
+        $user->role = $validated['role'];
+
+        // Update password jika diisi
+        if (!empty($validated['password'])) {
+            $user->password = bcrypt($validated['password']);
+        }
+
+        $user->save();
+
+        return redirect()->route('users.index')->with('success', 'User updated successfully');
+    }
+
+    /**
+     * Remove the specified user from storage.
+     */
+    public function destroy(User $user)
+    {
+        $user->delete();
+        return redirect()->route('users.index')->with('success', 'User deleted successfully');
     }
 }

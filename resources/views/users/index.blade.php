@@ -37,7 +37,18 @@
                                     <div class="text-sm text-gray-900">{{ ucfirst($user->role) }}</div>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
-                                    <a href="{{ route('users.show', $user->id) }}" class="text-blue-600 hover:underline">Details</a>
+                                    <div class="flex gap-3">
+                                        <a href="{{ route('users.edit', $user->id) }}" class="text-blue-600 hover:text-blue-800">
+                                            <i class="fa-solid fa-pen-to-square"></i>
+                                        </a>
+                                        <form action="{{ route('users.destroy', $user->id) }}" method="POST" class="inline" onsubmit="return confirm('Yakin ingin menghapus user ini?');">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="text-red-600 hover:text-red-800">
+                                                <i class="fa-solid fa-trash"></i>
+                                            </button>
+                                        </form>
+                                    </div>
                                 </td>
                             </tr>
                         @endforeach
